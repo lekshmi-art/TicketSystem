@@ -13,8 +13,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/api/auth', require('./routes/authRoutes'));
 //app.use('/api/tasks', require('./routes/taskRoutes'));
-app.use('/api/tickets', require('./routes/ticketRoutes')); // <-- add this file
-app.use('/api/sla', require('./routes/slaRoutes'));
+
 // Export the app object for testing
 if (require.main === module) {
     connectDB();
