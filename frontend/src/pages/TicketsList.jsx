@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { api } from '../api/client';
+
 
 export default function TicketsList(){
   const [items,setItems] = useState([]);
