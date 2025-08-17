@@ -22,12 +22,12 @@ const TaskForm = ({ tasks, setTasks, editingTask, setEditingTask }) => {
     e.preventDefault();
     try {
       if (editingTask) {
-        const response = await axiosInstance.put(`/api/tasks/${editingTask._id}`, formData, {
+        const response = await axiosInstance.put(`/api/tickets/${editingTask._id}`, formData, {
           headers: { Authorization: `Bearer ${user.token}` },
         });
         setTasks(tasks.map((task) => (task._id === response.data._id ? response.data : task)));
       } else {
-        const response = await axiosInstance.post('/api/tasks', formData, {
+        const response = await axiosInstance.post('/api/tickets', formData, {
           headers: { Authorization: `Bearer ${user.token}` },
         });
         setTasks([...tasks, response.data]);
@@ -41,17 +41,24 @@ const TaskForm = ({ tasks, setTasks, editingTask, setEditingTask }) => {
 
   return (
     <form onSubmit={handleSubmit} className="bg-white p-6 shadow-md rounded mb-6">
-      <h1 className="text-2xl font-bold mb-4">{editingTask ? 'Your Form Name: Edit Operation' : 'Your Form Name: Create Operation'}</h1>
+      <h1 className="text-2xl font-bold mb-4">{editingTask ? 'Your Form Name: Edit Operation' : 'Please Enter your Request for IT Tech Support'}</h1>
       <input
         type="text"
-        placeholder="Title"
+        placeholder="Name of the Requestor"
         value={formData.title}
         onChange={(e) => setFormData({ ...formData, title: e.target.value })}
         className="w-full mb-4 p-2 border rounded"
       />
       <input
+        type="email"
+        placeholder="Email of the Requestor"
+        value={formData.email}
+        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        className="w-full mb-4 p-2 border rounded"
+      />
+      <input
         type="text"
-        placeholder="Description"
+        placeholder="Description of Technical Support Required"
         value={formData.description}
         onChange={(e) => setFormData({ ...formData, description: e.target.value })}
         className="w-full mb-4 p-2 border rounded"
